@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Research Gorkha</title>
   <link rel="icon" href="didi_logo.jpg" />
-  <!-- Font Awesome for Facebook icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -81,7 +80,6 @@
       margin-bottom: 1rem;
     }
 
-    /* Date filter container */
     #date-filter-container {
       margin-bottom: 1rem;
       display: flex;
@@ -149,7 +147,7 @@
       border-left: 4px solid var(--primary);
     }
 
-    #article img {
+    #article-images img {
       max-width: 100%;
       margin: 1rem 0;
     }
@@ -237,7 +235,6 @@
 <section class="section" id="news-section">
   <h2>📰 Latest News</h2>
 
-  <!-- Date Filter -->
   <div id="date-filter-container">
     <label for="filter-date">Filter by Date:</label>
     <input type="date" id="filter-date" />
@@ -245,16 +242,14 @@
     <button onclick="clearFilter()">Clear</button>
   </div>
 
-  <div class="news-list" id="news-list">
-    <!-- News cards inserted here -->
-  </div>
+  <div class="news-list" id="news-list"></div>
 </section>
 
 <section class="section" id="article">
   <button id="back-btn" onclick="goBack()">🔙 <span>Back to News</span></button>
   <h2 id="article-title"></h2>
   <p id="article-date"></p>
-  <img id="article-image" src="" alt="" />
+  <div id="article-images"></div>
   <p id="article-content"></p>
 </section>
 
@@ -279,7 +274,6 @@
 </footer>
 
 <script>
-  // Clock
   function updateClock() {
     const now = new Date();
     document.getElementById("clock").textContent = now.toLocaleTimeString();
@@ -287,7 +281,6 @@
   setInterval(updateClock, 1000);
   updateClock();
 
-  // Theme toggle with popup
   const themeBtn = document.getElementById('themeToggle');
   function toggleTheme() {
     document.body.classList.toggle('dark');
@@ -305,7 +298,6 @@
     popup.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
     popup.style.opacity = '0';
     popup.style.transition = 'all 0.5s ease';
-
     document.body.appendChild(popup);
     setTimeout(() => popup.style.opacity = '1', 50);
     setTimeout(() => popup.style.opacity = '0', 1500);
@@ -313,16 +305,13 @@
   }
   themeBtn.onclick = toggleTheme;
 
-  // News System
   let allNews = [];
   async function loadNews() {
     const res = await fetch('news.json');
     allNews = await res.json();
-
-    // Sort news by latest date first
     allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
-
     renderNews();
+    checkURLForArticle();
   }
 
   function renderNews(newsToRender = allNews) {
@@ -341,19 +330,29 @@
 
   function showArticle(id) {
     const news = allNews.find(n => n.id === id);
+    if (!news) return;
+
     document.getElementById("article-title").textContent = news.title;
     document.getElementById("article-date").textContent = new Date(news.date).toLocaleDateString();
     document.getElementById("article-content").textContent = news.content;
-    document.getElementById("article-image").src = news.image || '';
-    document.getElementById("article-image").style.display = news.image ? 'block' : 'none';
+
+    const imageContainer = document.getElementById("article-images");
+    imageContainer.innerHTML = '';
+    (news.images || [news.image]).forEach(img => {
+      const image = document.createElement("img");
+      image.src = img;
+      imageContainer.appendChild(image);
+    });
 
     document.getElementById("news-section").style.display = 'none';
     document.getElementById("article").style.display = 'block';
+    history.pushState(null, '', `?id=${id}`);
   }
 
   function goBack() {
     document.getElementById("article").style.display = 'none';
     document.getElementById("news-section").style.display = 'block';
+    history.pushState(null, '', 'index.html');
   }
 
   function applyFilter() {
@@ -369,6 +368,19 @@
   function clearFilter() {
     document.getElementById('filter-date').value = '';
     renderNews(allNews);
+  }
+
+  function checkURLForArticle() {
+    const params = new URLSearchParams(window.location.search);
+    const articleId = params.get("id");
+    if (articleId) {
+      const waitUntilNewsLoaded = setInterval(() => {
+        if (allNews.length > 0) {
+          clearInterval(waitUntilNewsLoaded);
+          showArticle(parseInt(articleId));
+        }
+      }, 100);
+    }
   }
 
   loadNews();
