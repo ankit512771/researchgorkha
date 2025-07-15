@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ne">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,7 +19,9 @@
     }
 
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
@@ -116,7 +119,7 @@
       background: #fff;
       border-radius: 10px;
       padding: 1rem;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       transition: transform 0.2s;
       cursor: pointer;
     }
@@ -152,6 +155,14 @@
       margin: 1rem 0;
     }
 
+    #article-images img[src="images/2.jpg"] {
+      width: 400px;
+      height: 400px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+
     #back-btn {
       display: inline-flex;
       align-items: center;
@@ -163,7 +174,7 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       position: relative;
       overflow: hidden;
       transition: background-color 0.3s ease;
@@ -210,181 +221,190 @@
       text-decoration: underline;
     }
 
-    .contact, .ads {
+    .contact,
+    .ads {
       margin-top: 2rem;
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <div class="logo">
-    <img src="didi_logo.jpg" alt="Logo" />
-    <span><strong>Research Gorkha</strong></span>
-  </div>
-  <div class="clock" id="clock">00:00:00</div>
-  <button class="toggle-btn" id="themeToggle">🌙</button>
-</header>
+  <header>
+    <div class="logo">
+      <img src="didi_logo.jpg" alt="Logo" />
+      <span><strong>Research Gorkha</strong></span>
+    </div>
+    <div class="clock" id="clock">00:00:00</div>
+    <button class="toggle-btn" id="themeToggle">🌙</button>
+  </header>
 
-<section class="section bio">
-  <p>“<strong>कसैलाई नपुर्याउने चोट निष्पक्ष पत्रकारिता हाम्रो अठोट</strong>”</p>
-  <p>Follow Us for true and meaningful news we will always with you. 🥰🙏<br />
-  Your cozy corner, <strong>Research Gorkha 💯</strong></p>
-</section>
+  <section class="section bio">
+    <p>“<strong>कसैलाई नपुर्याउने चोट निष्पक्ष पत्रकारिता हाम्रो अठोट</strong>”</p>
+    <p>Follow Us for true and meaningful news we will always with you. 🥰🙏<br />
+      Your cozy corner, <strong>Research Gorkha 💯</strong></p>
+  </section>
 
-<section class="section" id="news-section">
-  <h2>📰 Latest News</h2>
+  <section class="section" id="news-section">
+    <h2>📰 Latest News</h2>
 
-  <div id="date-filter-container">
-    <label for="filter-date">Filter by Date:</label>
-    <input type="date" id="filter-date" />
-    <button onclick="applyFilter()">Filter</button>
-    <button onclick="clearFilter()">Clear</button>
-  </div>
+    <div id="date-filter-container">
+      <label for="filter-date">Filter by Date:</label>
+      <input type="date" id="filter-date" />
+      <button onclick="applyFilter()">Filter</button>
+      <button onclick="clearFilter()">Clear</button>
+    </div>
 
-  <div class="news-list" id="news-list"></div>
-</section>
+    <div class="news-list" id="news-list"></div>
+  </section>
 
-<section class="section" id="article">
-  <button id="back-btn" onclick="goBack()">🔙 <span>Back to News</span></button>
-  <h2 id="article-title"></h2>
-  <p id="article-date"></p>
-  <div id="article-images"></div>
-  <p id="article-content"></p>
-</section>
+  <section class="section" id="article">
+    <button id="back-btn" onclick="goBack()">🔙 <span>Back to News</span></button>
+    <h2 id="article-title"></h2>
+    <p id="article-date"></p>
+    <div id="article-images"></div>
+    <p id="article-content"></p>
+  </section>
 
-<section class="section contact">
-  <h3>📍 Contact Us</h3>
-  <p>Email: saralakhanal91@gmail.com</p>
-  <p>Address: Arughat, Gorkha</p>
-</section>
+  <section class="section contact">
+    <h3>📍 Contact Us</h3>
+    <p>Email: saralakhanal91@gmail.com</p>
+    <p>Address: Arughat, Gorkha</p>
+  </section>
 
-<section class="section ads">
-  <h3>📢 Advertise With Us</h3>
-  <p>Reach thousands of people in Gorkha and beyond. Email us for details.</p>
-</section>
+  <section class="section ads">
+    <h3>📢 Advertise With Us</h3>
+    <p>Reach thousands of people in Gorkha and beyond. Email us for details.</p>
+  </section>
 
-<footer>
-  <div>
-    <a href="https://www.facebook.com/profile.php?id=61556916549386" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-facebook-square" style="font-size: 1.3rem;"></i> Facebook
-    </a>
-  </div>
-  &copy; 2025 Research Gorkha. Made with ❤️ in Nepal.
-</footer>
+  <footer>
+    <div>
+      <a href="https://www.facebook.com/profile.php?id=61556916549386" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-facebook-square" style="font-size: 1.3rem;"></i> Facebook
+      </a>
+    </div>
+    &copy; 2025 Research Gorkha. Made with ❤️ in Nepal.
+  </footer>
 
-<script>
-  function updateClock() {
-    const now = new Date();
-    document.getElementById("clock").textContent = now.toLocaleTimeString();
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-
-  const themeBtn = document.getElementById('themeToggle');
-  function toggleTheme() {
-    document.body.classList.toggle('dark');
-    const emoji = document.body.classList.contains('dark') ? '🌙 Dark Mode' : '☀️ Light Mode';
-    const popup = document.createElement('div');
-    popup.textContent = emoji;
-    popup.style.position = 'fixed';
-    popup.style.bottom = '30px';
-    popup.style.right = '30px';
-    popup.style.padding = '10px 18px';
-    popup.style.background = '#1e40af';
-    popup.style.color = 'white';
-    popup.style.borderRadius = '10px';
-    popup.style.fontWeight = '600';
-    popup.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
-    popup.style.opacity = '0';
-    popup.style.transition = 'all 0.5s ease';
-    document.body.appendChild(popup);
-    setTimeout(() => popup.style.opacity = '1', 50);
-    setTimeout(() => popup.style.opacity = '0', 1500);
-    setTimeout(() => document.body.removeChild(popup), 2000);
-  }
-  themeBtn.onclick = toggleTheme;
-
-  let allNews = [];
-  async function loadNews() {
-    const res = await fetch('news.json');
-    allNews = await res.json();
-    allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
-    renderNews();
-    checkURLForArticle();
-  }
-
-  function renderNews(newsToRender = allNews) {
-    const container = document.getElementById("news-list");
-    if (newsToRender.length === 0) {
-      container.innerHTML = '<p style="font-style: italic;">No news found for this date.</p>';
-      return;
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("clock").textContent = now.toLocaleTimeString();
     }
-    container.innerHTML = newsToRender.map(n => `
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    const themeBtn = document.getElementById('themeToggle');
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const emoji = document.body.classList.contains('dark') ? '🌙 Dark Mode' : '☀️ Light Mode';
+      const popup = document.createElement('div');
+      popup.textContent = emoji;
+      popup.style.position = 'fixed';
+      popup.style.bottom = '30px';
+      popup.style.right = '30px';
+      popup.style.padding = '10px 18px';
+      popup.style.background = '#1e40af';
+      popup.style.color = 'white';
+      popup.style.borderRadius = '10px';
+      popup.style.fontWeight = '600';
+      popup.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
+      popup.style.opacity = '0';
+      popup.style.transition = 'all 0.5s ease';
+      document.body.appendChild(popup);
+      setTimeout(() => popup.style.opacity = '1', 50);
+      setTimeout(() => popup.style.opacity = '0', 1500);
+      setTimeout(() => document.body.removeChild(popup), 2000);
+    }
+    themeBtn.onclick = toggleTheme;
+
+    let allNews = [];
+    async function loadNews() {
+      const res = await fetch('news.json');
+      allNews = await res.json();
+
+      // Sort all news descending by date (latest first)
+      allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
+      console.log("Sorted news dates:", allNews.map(n => n.date)); // debug
+
+      renderNews();
+      checkURLForArticle();
+    }
+
+    function renderNews(newsToRender = allNews) {
+      const container = document.getElementById("news-list");
+      if (newsToRender.length === 0) {
+        container.innerHTML = '<p style="font-style: italic;">No news found for this date.</p>';
+        return;
+      }
+      container.innerHTML = newsToRender.map(n => `
       <div class="news-card" onclick="showArticle(${n.id})">
         <div class="news-title">${n.title}</div>
         <div class="news-date">${new Date(n.date).toLocaleDateString()}</div>
       </div>
     `).join('');
-  }
-
-  function showArticle(id) {
-    const news = allNews.find(n => n.id === id);
-    if (!news) return;
-
-    document.getElementById("article-title").textContent = news.title;
-    document.getElementById("article-date").textContent = new Date(news.date).toLocaleDateString();
-    document.getElementById("article-content").textContent = news.content;
-
-    const imageContainer = document.getElementById("article-images");
-    imageContainer.innerHTML = '';
-    (news.images || [news.image]).forEach(img => {
-      const image = document.createElement("img");
-      image.src = img;
-      imageContainer.appendChild(image);
-    });
-
-    document.getElementById("news-section").style.display = 'none';
-    document.getElementById("article").style.display = 'block';
-    history.pushState(null, '', `?id=${id}`);
-  }
-
-  function goBack() {
-    document.getElementById("article").style.display = 'none';
-    document.getElementById("news-section").style.display = 'block';
-    history.pushState(null, '', 'index.html');
-  }
-
-  function applyFilter() {
-    const dateInput = document.getElementById('filter-date').value;
-    if (!dateInput) {
-      alert('Please select a date to filter.');
-      return;
     }
-    const filtered = allNews.filter(n => n.date === dateInput);
-    renderNews(filtered);
-  }
 
-  function clearFilter() {
-    document.getElementById('filter-date').value = '';
-    renderNews(allNews);
-  }
+    function showArticle(id) {
+      const news = allNews.find(n => n.id === id);
+      if (!news) return;
 
-  function checkURLForArticle() {
-    const params = new URLSearchParams(window.location.search);
-    const articleId = params.get("id");
-    if (articleId) {
-      const waitUntilNewsLoaded = setInterval(() => {
-        if (allNews.length > 0) {
-          clearInterval(waitUntilNewsLoaded);
-          showArticle(parseInt(articleId));
-        }
-      }, 100);
+      document.getElementById("article-title").textContent = news.title;
+      document.getElementById("article-date").textContent = new Date(news.date).toLocaleDateString();
+      document.getElementById("article-content").textContent = news.content;
+
+      const imageContainer = document.getElementById("article-images");
+      imageContainer.innerHTML = '';
+      (news.images || [news.image]).forEach(img => {
+        const image = document.createElement("img");
+        image.src = img;
+        imageContainer.appendChild(image);
+      });
+
+      document.getElementById("news-section").style.display = 'none';
+      document.getElementById("article").style.display = 'block';
+      history.pushState(null, '', `?id=${id}`);
     }
-  }
 
-  loadNews();
-</script>
+    function goBack() {
+      document.getElementById("article").style.display = 'none';
+      document.getElementById("news-section").style.display = 'block';
+      history.pushState(null, '', 'index.html');
+    }
+
+    function applyFilter() {
+      const dateInput = document.getElementById('filter-date').value;
+      if (!dateInput) {
+        alert('Please select a date to filter.');
+        return;
+      }
+      const filtered = allNews.filter(n => n.date === dateInput);
+      // Sort filtered news too (though usually only one date)
+      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+      renderNews(filtered);
+    }
+
+    function clearFilter() {
+      document.getElementById('filter-date').value = '';
+      renderNews(allNews);
+    }
+
+    function checkURLForArticle() {
+      const params = new URLSearchParams(window.location.search);
+      const articleId = params.get("id");
+      if (articleId) {
+        const waitUntilNewsLoaded = setInterval(() => {
+          if (allNews.length > 0) {
+            clearInterval(waitUntilNewsLoaded);
+            showArticle(parseInt(articleId));
+          }
+        }, 100);
+      }
+    }
+
+    loadNews();
+  </script>
 
 </body>
+
 </html>
