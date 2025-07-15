@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research Gorkha</title>
+  <link rel="icon" href="didi_logo.jpg" />
+  <!-- Font Awesome for Facebook icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    :root {
+      --bg-light: #f9fafb;
+      --text-light: #111827;
+      --bg-dark: #1f2937;
+      --text-dark: #f3f4f6;
+      --primary: #1e40af;
+    }
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .clock {
+      font-weight: 600;
+    }
+
+    .toggle-btn {
+      background: #fff;
+      color: var(--primary);
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .bio {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* Date filter container */
+    #date-filter-container {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    #date-filter-container label {
+      font-weight: 600;
+    }
+
+    #date-filter-container button {
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--primary);
+      color: white;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    #date-filter-container button:hover {
+      background-color: #1d4ed8;
+    }
+
+    .news-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .news-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    body.dark .news-card {
+      background: #374151;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .news-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .news-date {
+      font-size: 0.9rem;
+      color: gray;
+    }
+
+    #article {
+      display: none;
+      margin-top: 2rem;
+      padding: 1rem;
+      border-left: 4px solid var(--primary);
+    }
+
+    #article img {
+      max-width: 100%;
+      margin: 1rem 0;
+    }
+
+    #back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.6rem 1.2rem;
+      font-weight: 600;
+      color: white;
+      background-color: #1e40af;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+      margin-bottom: 1rem;
+    }
+
+    #back-btn:hover {
+      background-color: #1d4ed8;
+    }
+
+    #back-btn::after {
+      content: "⟶";
+      position: absolute;
+      right: -20px;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    #back-btn:hover::after {
+      right: 12px;
+      opacity: 1;
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 0.7rem;
+      justify-content: center;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .contact, .ads {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="didi_logo.jpg" alt="Logo" />
+    <span><strong>Research Gorkha</strong></span>
+  </div>
+  <div class="clock" id="clock">00:00:00</div>
+  <button class="toggle-btn" id="themeToggle">🌙</button>
+</header>
+
+<section class="section bio">
+  <p>“<strong>कसैलाई नपुर्याउने चोट निष्पक्ष पत्रकारिता हाम्रो अठोट</strong>”</p>
+  <p>Follow Us for true and meaningful news we will always with you. 🥰🙏<br />
+  Your cozy corner, <strong>Research Gorkha 💯</strong></p>
+</section>
+
+<section class="section" id="news-section">
+  <h2>📰 Latest News</h2>
+
+  <!-- Date Filter -->
+  <div id="date-filter-container">
+    <label for="filter-date">Filter by Date:</label>
+    <input type="date" id="filter-date" />
+    <button onclick="applyFilter()">Filter</button>
+    <button onclick="clearFilter()">Clear</button>
+  </div>
+
+  <div class="news-list" id="news-list">
+    <!-- News cards inserted here -->
+  </div>
+</section>
+
+<section class="section" id="article">
+  <button id="back-btn" onclick="goBack()">🔙 <span>Back to News</span></button>
+  <h2 id="article-title"></h2>
+  <p id="article-date"></p>
+  <img id="article-image" src="" alt="" />
+  <p id="article-content"></p>
+</section>
+
+<section class="section contact">
+  <h3>📍 Contact Us</h3>
+  <p>Email: saralakhanal91@gmail.com</p>
+  <p>Address: Arughat, Gorkha</p>
+</section>
+
+<section class="section ads">
+  <h3>📢 Advertise With Us</h3>
+  <p>Reach thousands of people in Gorkha and beyond. Email us for details.</p>
+</section>
+
+<footer>
+  <div>
+    <a href="https://www.facebook.com/profile.php?id=61556916549386" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-facebook-square" style="font-size: 1.3rem;"></i> Facebook
+    </a>
+  </div>
+  &copy; 2025 Research Gorkha. Made with ❤️ in Nepal.
+</footer>
+
+<script>
+  // Clock
+  function updateClock() {
+    const now = new Date();
+    document.getElementById("clock").textContent = now.toLocaleTimeString();
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Theme toggle with popup
+  const themeBtn = document.getElementById('themeToggle');
+  function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const emoji = document.body.classList.contains('dark') ? '🌙 Dark Mode' : '☀️ Light Mode';
+    const popup = document.createElement('div');
+    popup.textContent = emoji;
+    popup.style.position = 'fixed';
+    popup.style.bottom = '30px';
+    popup.style.right = '30px';
+    popup.style.padding = '10px 18px';
+    popup.style.background = '#1e40af';
+    popup.style.color = 'white';
+    popup.style.borderRadius = '10px';
+    popup.style.fontWeight = '600';
+    popup.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
+    popup.style.opacity = '0';
+    popup.style.transition = 'all 0.5s ease';
+
+    document.body.appendChild(popup);
+    setTimeout(() => popup.style.opacity = '1', 50);
+    setTimeout(() => popup.style.opacity = '0', 1500);
+    setTimeout(() => document.body.removeChild(popup), 2000);
+  }
+  themeBtn.onclick = toggleTheme;
+
+  // News System
+  let allNews = [];
+  async function loadNews() {
+    const res = await fetch('news.json');
+    allNews = await res.json();
+
+    // Sort news by latest date first
+    allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    renderNews();
+  }
+
+  function renderNews(newsToRender = allNews) {
+    const container = document.getElementById("news-list");
+    if (newsToRender.length === 0) {
+      container.innerHTML = '<p style="font-style: italic;">No news found for this date.</p>';
+      return;
+    }
+    container.innerHTML = newsToRender.map(n => `
+      <div class="news-card" onclick="showArticle(${n.id})">
+        <div class="news-title">${n.title}</div>
+        <div class="news-date">${new Date(n.date).toLocaleDateString()}</div>
+      </div>
+    `).join('');
+  }
+
+  function showArticle(id) {
+    const news = allNews.find(n => n.id === id);
+    document.getElementById("article-title").textContent = news.title;
+    document.getElementById("article-date").textContent = new Date(news.date).toLocaleDateString();
+    document.getElementById("article-content").textContent = news.content;
+    document.getElementById("article-image").src = news.image || '';
+    document.getElementById("article-image").style.display = news.image ? 'block' : 'none';
+
+    document.getElementById("news-section").style.display = 'none';
+    document.getElementById("article").style.display = 'block';
+  }
+
+  function goBack() {
+    document.getElementById("article").style.display = 'none';
+    document.getElementById("news-section").style.display = 'block';
+  }
+
+  function applyFilter() {
+    const dateInput = document.getElementById('filter-date').value;
+    if (!dateInput) {
+      alert('Please select a date to filter.');
+      return;
+    }
+    const filtered = allNews.filter(n => n.date === dateInput);
+    renderNews(filtered);
+  }
+
+  function clearFilter() {
+    document.getElementById('filter-date').value = '';
+    renderNews(allNews);
+  }
+
+  loadNews();
+</script>
+
+</body>
+</html>
