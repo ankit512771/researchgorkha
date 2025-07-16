@@ -3,26 +3,27 @@
     "id": 1,
     "title": "EV micro accident in Gorkha Bazar: Damage in mobile shop, 1 passenger injured",
     "date": "2025-07-13",
-    "content": "Today afternoon, a micro accident happened at Gorkha headquarters. Mobile shop damaged...",
+    "content": "Today afternoon, a Higer EV microbus (registration number 006 kha 6322) met with an accident near Chalise Chowk on Hospital Road, Gorkha Municipality-6. According to the District Traffic Police Office, Gorkha, the microbus was traveling from Gorkha Bazar to Dhampeshal when the incident occurred.\n\nAn eyewitness reported that the microbus suddenly rolled backward while stopped at Chalise Chowk, hitting the Bikas Mobile Center shop and causing interior damage.\n\nKabita Tiwari, a 41-year-old resident of Nareshwar, Gorkha Municipality-3, suffered minor injuries after jumping off the microbus due to the unexpected movement. She received treatment at Gorkha Hospital and has already been discharged.\n\nThe microbus involved is operated by Draundi Transport Service Pvt. Ltd. There were four passengers inside the vehicle at the time of the accident. The full extent of damage to the shop is yet to be determined.",
     "images": ["images/1.jpg"]
   },
   {
     "id": 2,
     "title": "Hero Dog Rocky Saves 67 Lives in Himachal Landslide",
     "date": "2025-07-10",
-    "content": "A small village in Himachal Pradesh...",
+    "content": "It was raining heavily outside. The thunder and lightning felt as if the sky itself had torn apart. The lights were out, the village was asleep — but one soul was awake.\n\nRocky.\n\nA tiny, speechless, innocent dog, tied to a small kennel. But that night, he sensed something unnatural.\n\nHis ears twitched. He felt tremors through the ground — danger was approaching. Rocky’s instincts awoke — and he suddenly began barking like crazy.\n\nHe barked without stopping, through the storm, from midnight onwards. His owner shouted at him to stop, but Rocky wouldn’t calm down.\n\nAnnoyed and half-asleep, his owner finally opened the door — and saw a strange sight. A bird flew low into the courtyard — and the ground seemed to move.\n\n\"The land is coming!\"\n\nShe screamed and raised the alarm across the village. One by one, the villagers woke up and fled to safety, grabbing nothing.\n\nWithin two minutes, the entire village was buried. No houses remain — only tin sheets and piles of mud. But one thing did remain — life.\n\nBecause of Rocky’s warning, 67 people from 20 families survived that night.\n\nThat innocent animal could not speak or write, but showed a level of awareness many humans lack.\n\nToday, the villagers call Rocky the “Angel of God.” He sleeps again now, tied with an old rope, resting his head on his owner’s lap — but in many hearts, he is forever a hero.",
     "images": ["images/2.jpg"]
   },
+  
   {
-       
+    
   "id": 3,
   "title": "Second Meeting of 17th Village Assembly of Aarughat Rural Municipality Concludes Annual Budget",
   "date": "2025-07-16",
   "content": "The second meeting of the 17th Village Assembly of Aarughat Rural Municipality has concluded the annual budget and program with an income estimate of NPR 61 crore 60 lakh 50 thousand.",
   "images": "images/3.jpg"
     
-  },
-  {
+},
+    {
     "id": 4,
     "title": "Notice regarding the closure of National Identity Card Registration Camp !!",
     "date": "2025-07-11",
@@ -30,3 +31,4 @@
     "images": ["images/notic.1.jpg"]
   }
 ]
+
