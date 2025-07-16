@@ -14,11 +14,13 @@
     "images": ["images/2.jpg"]
   },
   {
-    "id": 3,
-    "title": "Second Meeting of 17th Village Assembly of Aarughat Rural Municipality Concludes Annual Budget",
-    "date": "2025-07-16",
-    "content": "The second meeting of the 17th Village Assembly of Aarughat Rural Municipality has concluded...",
-    "images": ["images/3.jpg"]
+       
+  "id": 3,
+  "title": "Second Meeting of 17th Village Assembly of Aarughat Rural Municipality Concludes Annual Budget",
+  "date": "2025-07-16",
+  "content": "The second meeting of the 17th Village Assembly of Aarughat Rural Municipality has concluded the annual budget and program with an income estimate of NPR 61 crore 60 lakh 50 thousand.",
+  "images": "images/3.jpg"
+    
   },
   {
     "id": 4,
