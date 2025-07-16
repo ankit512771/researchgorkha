@@ -162,7 +162,6 @@
       border-radius: 10px;
     }
 
-
     #back-btn {
       display: inline-flex;
       align-items: center;
@@ -322,11 +321,7 @@
     async function loadNews() {
       const res = await fetch('news.json');
       allNews = await res.json();
-
-      // Sort all news descending by date (latest first)
       allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
-      console.log("Sorted news dates:", allNews.map(n => n.date)); // debug
-
       renderNews();
       checkURLForArticle();
     }
@@ -355,10 +350,14 @@
 
       const imageContainer = document.getElementById("article-images");
       imageContainer.innerHTML = '';
-      (news.images || [news.image]).forEach(img => {
-        const image = document.createElement("img");
-        image.src = img;
-        imageContainer.appendChild(image);
+
+      const imgs = Array.isArray(news.images) ? news.images : [news.images || news.image];
+      imgs.forEach(img => {
+        if (img) {
+          const image = document.createElement("img");
+          image.src = img;
+          imageContainer.appendChild(image);
+        }
       });
 
       document.getElementById("news-section").style.display = 'none';
@@ -379,7 +378,6 @@
         return;
       }
       const filtered = allNews.filter(n => n.date === dateInput);
-      // Sort filtered news too (though usually only one date)
       filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
       renderNews(filtered);
     }
