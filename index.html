@@ -7,11 +7,6 @@
   <title>Research Gorkha</title>
   <link rel="icon" href="didi_logo.jpg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- ✅ Google AdSense Loader Script -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2109633591337486"
-    crossorigin="anonymous"></script>
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -107,7 +102,6 @@
       background-color: var(--primary);
       color: white;
       font-weight: 600;
-      transition: background-color 0.3s ease;
     }
 
     #date-filter-container button:hover {
@@ -155,16 +149,11 @@
       border-left: 4px solid var(--primary);
     }
 
-    #article-images img {
+    #article-images img,
+    #article-images video {
       max-width: 100%;
       margin: 1rem 0;
-    }
-
-    #article-images img[src="images/2.jpg"] {
-      width: 400px;
-      height: 400px;
-      object-fit: contain;
-      border-radius: 10px;
+      border-radius: 8px;
     }
 
     #back-btn {
@@ -178,28 +167,11 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      position: relative;
-      overflow: hidden;
-      transition: background-color 0.3s ease;
       margin-bottom: 1rem;
     }
 
     #back-btn:hover {
       background-color: #1d4ed8;
-    }
-
-    #back-btn::after {
-      content: "⟶";
-      position: absolute;
-      right: -20px;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    #back-btn:hover::after {
-      right: 12px;
-      opacity: 1;
     }
 
     footer {
@@ -217,28 +189,70 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-bottom: 0.7rem;
-      justify-content: center;
+      margin: 0 10px;
     }
 
     footer a:hover {
       text-decoration: underline;
     }
 
-    .contact,
-    .ads {
-      margin-top: 2rem;
+    .founder-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 10px;
+    }
+
+    /* Smooth slide + fade for About/Policy */
+    .slide-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      margin-top: 10px;
+      font-size: 0.9rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .slide-content.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .calc-box {
+      margin: 20px auto;
+      text-align: center;
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 10px;
+      max-width: 350px;
+      font-size: 0.9rem;
+    }
+
+    .calc-box input {
+      margin: 5px;
+      padding: 4px;
+    }
+
+    .calc-box button {
+      padding: 5px 10px;
+      margin-top: 5px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-
   <header>
-    <div class="logo">
-      <img src="didi_logo.jpg" alt="Logo" />
-      <span><strong>Research Gorkha</strong></span>
-    </div>
+    <div class="logo"><img src="didi_logo.jpg" alt="Logo" /><span><strong>Research Gorkha</strong></span></div>
     <div class="clock" id="clock">00:00:00</div>
     <button class="toggle-btn" id="themeToggle">🌙</button>
   </header>
@@ -251,14 +265,12 @@
 
   <section class="section" id="news-section">
     <h2>📰 Latest News</h2>
-
     <div id="date-filter-container">
       <label for="filter-date">Filter by Date:</label>
       <input type="date" id="filter-date" />
       <button onclick="applyFilter()">Filter</button>
       <button onclick="clearFilter()">Clear</button>
     </div>
-
     <div class="news-list" id="news-list"></div>
   </section>
 
@@ -270,108 +282,82 @@
     <p id="article-content"></p>
   </section>
 
-  <section class="section contact">
-    <h3>📍 Contact Us</h3>
-    <p>Email: saralakhanal91@gmail.com</p>
-    <p>Address: Arughat, Gorkha</p>
-  </section>
-
-  <section class="section ads">
-    <h3>📢 Advertise With Us</h3>
-    <p>Reach thousands of people in Gorkha and beyond. Email us for details.</p>
-
-    <!-- ✅ Google AdSense Ad Unit -->
-    <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-2109633591337486"
-      data-ad-slot="YOUR-AD-SLOT-ID"
-      data-ad-format="auto"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+  <!-- Small Age Calculator -->
+  <section class="calc-box">
+    <h4>Age Calculator </h4>
+    <label>Date of Birth: <input type="date" id="dob"></label><br />
+    <button onclick="calculateAge()">Calculate Age</button>
+    <p id="age-result"></p>
+    <label>BS Year: <input type="number" id="bs" placeholder="2080"></label>
+    <button onclick="bsToAd()">BS → AD</button>
+    <p id="bs-ad"></p>
+    <label>AD Year: <input type="number" id="ad" placeholder="2024"></label>
+    <button onclick="adToBs()">AD → BS</button>
+    <p id="ad-bs"></p>
   </section>
 
   <footer>
     <div>
-      <a href="https://www.facebook.com/profile.php?id=61556916549386" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-facebook-square" style="font-size: 1.3rem;"></i> Facebook
+      <a href="#" onclick="toggleSlide('about',event)">About Us</a> |
+      <a href="#" onclick="toggleSlide('policy',event)">Privacy Policy</a> |
+      <a href="https://www.facebook.com/profile.php?id=61556916549386" target="_blank">
+        <i class="fab fa-facebook-square"></i> Facebook
       </a>
     </div>
-    &copy; 2025 Research Gorkha. Made with ❤️ in Nepal.
+    <div id="about" class="slide-content">
+      <p><strong>Research Gorkha</strong> is a dedicated online news portal serving Gorkha and Nepal, committed to
+        delivering factual, unbiased, and impactful journalism. Our mission is to give every citizen a voice and provide
+        accurate information to the public.</p>
+    </div>
+    <div id="policy" class="slide-content">
+      <p>We respect your privacy. Research Gorkha does not share or sell your data. Cookies are used only for
+        performance and analytics. Your trust is our priority, and we comply with Nepali laws on user data protection.
+      </p>
+    </div>
+    <img src="founder.jpg" alt="Founder" class="founder-img">
+    <p>&copy; 2025 Research Gorkha. Made with ❤️ in Nepal.</p>
   </footer>
 
   <script>
-    function updateClock() {
-      const now = new Date();
-      document.getElementById("clock").textContent = now.toLocaleTimeString();
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    const themeBtn = document.getElementById('themeToggle');
-    function toggleTheme() {
-      document.body.classList.toggle('dark');
-      const emoji = document.body.classList.contains('dark') ? '🌙 Dark Mode' : '☀️ Light Mode';
-      const popup = document.createElement('div');
-      popup.textContent = emoji;
-      popup.style.position = 'fixed';
-      popup.style.bottom = '30px';
-      popup.style.right = '30px';
-      popup.style.padding = '10px 18px';
-      popup.style.background = '#1e40af';
-      popup.style.color = 'white';
-      popup.style.borderRadius = '10px';
-      popup.style.fontWeight = '600';
-      popup.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
-      popup.style.opacity = '0';
-      popup.style.transition = 'all 0.5s ease';
-      document.body.appendChild(popup);
-      setTimeout(() => popup.style.opacity = '1', 50);
-      setTimeout(() => popup.style.opacity = '0', 1500);
-      setTimeout(() => document.body.removeChild(popup), 2000);
-    }
-    themeBtn.onclick = toggleTheme;
+    function updateClock() { document.getElementById("clock").textContent = new Date().toLocaleTimeString(); }
+    setInterval(updateClock, 1000); updateClock();
+    document.getElementById('themeToggle').onclick = function () { document.body.classList.toggle('dark'); };
 
     let allNews = [];
     async function loadNews() {
-      const res = await fetch('news.json');
-      allNews = await res.json();
-      allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
-      renderNews();
-      checkURLForArticle();
+      const res = await fetch('news.json'); allNews = await res.json();
+      allNews.sort((a, b) => new Date(b.date) - new Date(a.date)); renderNews(); checkURLForArticle();
     }
-
-    function renderNews(newsToRender = allNews) {
-      const container = document.getElementById("news-list");
-      if (newsToRender.length === 0) {
-        container.innerHTML = '<p style="font-style: italic;">No news found for this date.</p>';
-        return;
-      }
-      container.innerHTML = newsToRender.map(n => `
-      <div class="news-card" onclick="showArticle(${n.id})">
-        <div class="news-title">${n.title}</div>
-        <div class="news-date">${new Date(n.date).toLocaleDateString()}</div>
-      </div>
-    `).join('');
+    function formatDate(d) {
+      return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
     }
-
+    function renderNews(list = allNews) {
+      const c = document.getElementById("news-list");
+      if (list.length === 0) { c.innerHTML = '<p>No news found for this date.</p>'; return; }
+      c.innerHTML = list.map(n => `<div class="news-card" onclick="showArticle(${n.id})"><div class="news-title">${n.title}</div><div class="news-date">${formatDate(n.date)}</div></div>`).join('');
+    }
     function showArticle(id) {
-      const news = allNews.find(n => n.id === id);
-      if (!news) return;
+      const n = allNews.find(x => x.id === id); if (!n) return;
+      document.getElementById("article-title").textContent = n.title;
+      document.getElementById("article-date").textContent = formatDate(n.date);
+      document.getElementById("article-content").textContent = n.content;
+      const imgC = document.getElementById("article-images"); imgC.innerHTML = '';
 
-      document.getElementById("article-title").textContent = news.title;
-      document.getElementById("article-date").textContent = new Date(news.date).toLocaleDateString();
-      document.getElementById("article-content").textContent = news.content;
+      // ✅ Handle old & new JSON formats
+      let files = [];
+      if (Array.isArray(n.media)) files = n.media;
+      else if (Array.isArray(n.images)) files = n.images;
+      else if (n.image) files = [n.image];
 
-      const imageContainer = document.getElementById("article-images");
-      imageContainer.innerHTML = '';
-
-      const imgs = Array.isArray(news.images) ? news.images : [news.images || news.image];
-      imgs.forEach(img => {
-        if (img) {
-          const image = document.createElement("img");
-          image.src = img;
-          imageContainer.appendChild(image);
+      files.forEach(file => {
+        if (!file) return;
+        const ext = file.split('.').pop().toLowerCase();
+        if (['mp4', 'webm', 'ogg'].includes(ext)) {
+          const vid = document.createElement("video");
+          vid.src = file; vid.controls = true; vid.style.maxWidth = "100%"; imgC.appendChild(vid);
+        } else {
+          const img = document.createElement("img");
+          img.src = file; imgC.appendChild(img);
         }
       });
 
@@ -379,45 +365,31 @@
       document.getElementById("article").style.display = 'block';
       history.pushState(null, '', `?id=${id}`);
     }
+    function goBack() { document.getElementById("article").style.display = 'none'; document.getElementById("news-section").style.display = 'block'; history.pushState(null, '', 'index.html'); }
+    function applyFilter() { const d = document.getElementById('filter-date').value; if (!d) { alert('Select a date'); return; } renderNews(allNews.filter(n => n.date === d)); }
+    function clearFilter() { document.getElementById('filter-date').value = ''; renderNews(allNews); }
+    function checkURLForArticle() { const p = new URLSearchParams(window.location.search).get("id"); if (p) { const i = setInterval(() => { if (allNews.length > 0) { clearInterval(i); showArticle(parseInt(p)); } }, 100); } } loadNews();
 
-    function goBack() {
-      document.getElementById("article").style.display = 'none';
-      document.getElementById("news-section").style.display = 'block';
-      history.pushState(null, '', 'index.html');
-    }
-
-    function applyFilter() {
-      const dateInput = document.getElementById('filter-date').value;
-      if (!dateInput) {
-        alert('Please select a date to filter.');
-        return;
-      }
-      const filtered = allNews.filter(n => n.date === dateInput);
-      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-      renderNews(filtered);
-    }
-
-    function clearFilter() {
-      document.getElementById('filter-date').value = '';
-      renderNews(allNews);
-    }
-
-    function checkURLForArticle() {
-      const params = new URLSearchParams(window.location.search);
-      const articleId = params.get("id");
-      if (articleId) {
-        const waitUntilNewsLoaded = setInterval(() => {
-          if (allNews.length > 0) {
-            clearInterval(waitUntilNewsLoaded);
-            showArticle(parseInt(articleId));
-          }
-        }, 100);
+    function toggleSlide(id, e) {
+      if (e) e.preventDefault();
+      const sec = document.getElementById(id);
+      const already = sec.classList.contains('show');
+      document.querySelectorAll('.slide-content').forEach(d => d.classList.remove('show'));
+      if (!already) {
+        sec.classList.add('show');
+        setTimeout(() => sec.classList.remove('show'), 6000);
       }
     }
 
-    loadNews();
+    function calculateAge() {
+      const dob = new Date(document.getElementById('dob').value); if (!dob.getTime()) return;
+      const now = new Date(); let y = now.getFullYear() - dob.getFullYear(), m = now.getMonth() - dob.getMonth(), d = now.getDate() - dob.getDate();
+      if (d < 0) { m--; d += 30; } if (m < 0) { y--; m += 12; }
+      document.getElementById('age-result').textContent = `Age: ${y} Years, ${m} Months, ${d} Days`;
+    }
+    function bsToAd() { const bs = parseInt(document.getElementById('bs').value); if (!bs) return; document.getElementById('bs-ad').textContent = `AD: ${bs - 57}`; }
+    function adToBs() { const ad = parseInt(document.getElementById('ad').value); if (!ad) return; document.getElementById('ad-bs').textContent = `BS: ${ad + 57}`; }
   </script>
-
 </body>
 
 </html>
